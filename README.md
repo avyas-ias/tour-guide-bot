@@ -1,6 +1,8 @@
 Bolt app template
 =================
 
+Tweak the source code here - https://glitch.com/edit/#!/abalone-living-headphones
+
 [Bolt](https://slack.dev/bolt) is our framework that lets you build JavaScript-based Slack apps in a flash.
 
 This project is a simple app template to make it easy to create your first Bolt app. Read our [Getting Started with Bolt](https://api.slack.com/start/building/bolt) guide for a more in-depth tutorial
