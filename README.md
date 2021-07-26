@@ -1,4 +1,4 @@
-Tour Guide Bot (Better name is on the way)
+Bolt app template
 =================
 
 [Bolt](https://slack.dev/bolt) is our framework that lets you build JavaScript-based Slack apps in a flash.
@@ -11,7 +11,6 @@ Your Project
 - `app.js` contains the primary Bolt app. It imports the Bolt package (`@slack/bolt`) and starts the Bolt app's server. It's where you'll add your app's listeners.
 - `.env` is where you'll put your Slack app's authorization token and signing secret.
 - The `examples/` folder contains a couple of other sample apps that you can peruse to your liking. They show off a few platform features that your app may want to use.
-- The `view/` folder contains a couple of UI views used by the bot. 
 
 
 Read the [Getting Started guide](https://api.slack.com/start/building/bolt)

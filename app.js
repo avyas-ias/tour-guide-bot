@@ -117,7 +117,7 @@ app.event('team_join', async ({ payload, event, client }) => {
   let userid = payload.user;
   let user = await client.users.info({user:userid});
   await sendMessage(client, userid,`<@${userid}>`);
-  await sendMessage(client,userid, `👋🏻  *Hello ${user.user.name}* and welcome to Tour guide bot staging enviornment. You and your team can test my capabilites here.\n\nI can do many things for you including this welcoming message, check the *Home* tab to find out more !`);
+  await sendMessage(client,userid, `👋🏻  *Hello ${user.user.name}* and welcome to Tour guide bot staging enviornment. You and your team can test my capabilites here.\n\nI can do many things for you including this welcoming message, check the *Home* tab to find out more !\n\nCheck my source code here -- https://github.com/avyas-ias/tour-guide-bot`);
 });
 
 // boilerplate code to start the bolt.js server listning at a given port
