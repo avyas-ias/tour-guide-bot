@@ -1,5 +1,7 @@
 // importing the bolt.js package
 const { App } = require("@slack/bolt");
+const axios = require('axios').default;
+const getUser = require('./utils/getUser');
 const getUserId = require('./utils/getUserId');
 const getChannelId = require('./utils/getChannelId');
 const sendMessage = require('./utils/sendMessage');
@@ -10,6 +12,7 @@ const introModel = require('./views/introModel');
 const introSlide = require('./views/introSlide');
 
 const INTRODUCTION_CHANNELS = ["general","tour-guide-bot"];
+const TRIGGER_CHANNEL = "C02976ZLCR3";
 
 // configuring bot
 const app = new App({
@@ -17,18 +20,31 @@ const app = new App({
   signingSecret: process.env.SLACK_SIGNING_SECRET
 });
 
-
 // function that'll execute when a button with action_id recommend_people is clicked
 app.action("recommend_people", async ({ ack, body, client }) => {
   await ack();
   
-  let recommendedPeople = ["vyasa887@gmail.com"];
-  await sendMessage(client,body.user.id,`*You should meet these people :point_down:*`);
+  let recommendedPeople = [];
   
+  let uname = await client.users.info({user:body.user.id}).real_name;
+  getUser(await client.users, body.user.name ,uid=>uname=uid);
+  console.log(uname);
+  axios.get(`https://slack-bot-peer-recommend.herokuapp.com/recommendpeer?uname=${uname}`)
+  .then(function (response) {
+    recommendedPeople = response.data;
+    recommendedPeople = recommendedPeople.map(person=>person.split(" ")[0][0]+person.split(" ")[1]+"@integralads.com");
+    // console.log(recommendedPeople);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  
+  // await sendMessage(client,body.user.id,`*You should meet these people :point_down:*`);
+
   recommendedPeople.map(async i => {
     let user = null;
     getUserId(await client.users.list(), i ,uid=>user=uid);
-    await sendMessage(client,body.user.id,`<@${user}>`);
+    // await sendMessage(client,body.user.id,`<@${user}>`);
   });
 });
 
@@ -60,6 +76,24 @@ app.action("introduce_me", async ({ ack, body, client }) => {
     
   } catch (error) {
     console.error(error);
+  }
+});
+
+
+// removing user for testing team_join event
+app.action("remove_user", async ({ ack, body, client }) => {
+  await ack();
+  
+  let userid = body.user.id;
+  console.log(userid);
+  try{
+    client.admin.users.remove({
+      team_id: "T02T92FV0",
+      user_id: userid
+    }); 
+  }
+  catch(e){
+    console.log(e);
   }
 });
 
@@ -109,6 +143,18 @@ app.event("app_home_opened", async ({ body,payload, client }) => {
     
   } catch (error) {
     console.error(error);
+  }
+});
+
+// handling the new member joinging event
+app.event('member_joined_channel', async ({ event, client }) => {
+  let userid = event.user;
+  console.log(event);
+  console.log(client);
+  if(event.channel === TRIGGER_CHANNEL){
+    let user = await client.users.info({user:userid});
+    await sendMessage(client, userid,`<@${userid}>`);
+    await sendMessage(client,userid, `👋🏻  *Hello ${user.user.name}* and welcome to Tour guide bot staging enviornment. You and your team can     test my capabilites here.\n\nI can do many things for you including this welcoming message, check the *Home* tab to find out more   !\n\nCheck   my source code here -- https://github.com/avyas-ias/tour-guide-bot`); 
   }
 });
 

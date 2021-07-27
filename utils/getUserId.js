@@ -4,7 +4,7 @@ const getUserId = (allUsers, targetUser, cb) => {
     cb(user[0].id);
   }
   else{
-    cb(null);
+    cb(targetUser);
   }
 }
 
