@@ -6,7 +6,7 @@ const homeView = {
       text: {
         type: "plain_text",
         text:
-          "👋🏻  Hello there new hire, hope you settling well on your first day.\nI am here to help you show around the IAS slack workspace and get you acquainted with some people you are going to work with.\n\nJust tell me what you want to start with ...",
+          "👋🏻  Howdy! We’re excited to have you onboard!\n\nHope you are settling well on your first day. We’re committed to smooth onboarding experience and I’m here to assist you with any queries you have like your team members, SPOCs or any other general query.\n\n Feel free to check below functionalities.",
         emoji: true
       }
     },
@@ -20,7 +20,7 @@ const homeView = {
           type: "button",
           text: {
             type: "plain_text",
-            text: "🙋🏻‍ Help me meet some new people",
+            text: ":wave::skin-tone-3: Connect me to new people\t",
             emoji: true
           },
           style: "primary",
@@ -36,7 +36,7 @@ const homeView = {
           type: "button",
           text: {
             type: "plain_text",
-            text: "🚪 Get me into some new channels",
+            text: ":bulb:  Show me interesting channels",
             emoji: true
           },
           style: "primary",
@@ -52,7 +52,7 @@ const homeView = {
           type: "button",
           text: {
             type: "plain_text",
-            text: "👋🏻  Introduce me to everyone",
+            text: ":mega:  Introduce me to everyone !",
             emoji: true
           },
           style: "primary",
