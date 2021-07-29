@@ -1,6 +1,7 @@
 dependencies:
   '@slack/bolt': 1.6.0
   axios: 0.21.1
+  node-fetch: 2.6.1
 packages:
   /@slack/bolt/1.6.0:
     dependencies:
@@ -456,6 +457,12 @@ packages:
       node: '>= 0.6'
     resolution:
       integrity: sha512-hZXc7K2e+PgeI1eDBe/10Ard4ekbfrrqG8Ep+8Jmf4JID2bNg7NvCPOZN+kfF574pFQI7mum2AUqDidoKqcTOw==
+  /node-fetch/2.6.1:
+    dev: false
+    engines:
+      node: 4.x || >=6.0.0
+    resolution:
+      integrity: sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -659,3 +666,4 @@ shrinkwrapVersion: 3
 specifiers:
   '@slack/bolt': 1.6.0
   axios: 0.21.1
+  node-fetch: 2.6.1
